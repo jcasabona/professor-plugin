@@ -17,13 +17,15 @@ class Prof_Contact_Widget extends WP_Widget {
 	}
 
 	public function form( $instance ) {
-		$title = (isset( $instance[ 'title' ])) ? $instance[ 'title' ] : 'Contact Information';
+		$title = (isset( $instance[ 'title' ])) ? $instance[ 'title' ] : get_option('prof_name');
 
 	?>
 		<p>
 		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
+
+		<p>** Make sure you add this information on the Professor Theme Options page!</p>
 	<?php 
 	}
 
@@ -39,21 +41,19 @@ class Prof_Contact_Widget extends WP_Widget {
 		$email= get_option('prof_email');
 		$phone= get_option('prof_phone');
 		$twitter= get_option('prof_twitter');
-		
 ?>
-		<dl>
-			<dt>Office</dt>
-				<dd><?php print $office; ?> <?php if($find != ''){ print '(<a href="'. $find .'">find it</a>)'; } ?></dd>
-					
-				<dt>Email Address</dt>
-					<dd><?php print $email; ?> </dd>
-					
-				<dt>Phone Number</dt>
-					<dd><?php print $phone; ?></dd>
-					
-				<dt>Twitter</dt>
-					<dd><a href="http://www.twitter.com/<?php print $twitter; ?>">@<?php print $twitter; ?></a></dd>
-			</dl>
+	<div class="prof-contact-widget group">
+		<div class="prof-photo">
+			<?php echo get_avatar( $email, $size = '250') ?>
+		</div>
+
+		<ul class="prof-info">
+			<li>Office: <?php print $office; ?> <?php if($find != ''){ print '(<a href="'. $find .'">find it</a>)'; } ?></li>
+			<li>Email Address: <?php print $email; ?> </li>
+			<li>Phone Number: <a href="tel:<?php print $phone; ?>"><?php print $phone; ?></a></li>
+			<li>Twitter: <a href="http://www.twitter.com/<?php print $twitter; ?>">@<?php print $twitter; ?></a></li>
+		</ul>
+	</div>
 
 <?php
 		echo $after_widget; 
