@@ -8,7 +8,7 @@ class Professor{
 
 	function get_all_courses(){
 		$args= array(
-			'post_type' => 'courses'
+			'post_type' => 'prof_courses'
 		);
 		
 		$courses= get_posts($args);	

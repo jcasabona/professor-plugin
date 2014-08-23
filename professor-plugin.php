@@ -5,7 +5,7 @@ Plugin URI: (forthcoming)
 Description: Adds assignments, courses, and office hours to a WordPress site
 Author: Joe Casabona
 Author URI: http://casabona.org
-Version: 0.95
+Version: 1.0
 License: GPL version 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
@@ -35,6 +35,12 @@ function prof_get_assns(){
 function prof_is_assn($type){
 	global $prof_assignments;
 	return $prof_assignments->is_assn($type);
+}
+
+function prof_get_course_meta($course_id){
+	global $prof;
+	$course= $prof->get_course_by_id($course_id);
+	return $course->meta;
 }
 
 

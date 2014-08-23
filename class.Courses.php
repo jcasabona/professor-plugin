@@ -129,6 +129,11 @@ class Prof_Course{
         //create new category here with same name as Course.
         wp_create_category(get_the_title($post_id), $this->categoryID);
     }
+
+
+    function get_course_meta($post_id){
+        
+    }
 }
 
 // check autosave
