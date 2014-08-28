@@ -44,7 +44,7 @@ class Professor{
 		)
 	);
 	
-	$assns= get_posts($args);
+	$assns= new WP_Query($args);
 	
 	return $assns;
 	

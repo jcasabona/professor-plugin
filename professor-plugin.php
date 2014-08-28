@@ -43,5 +43,10 @@ function prof_get_course_meta($course_id){
 	return $course->meta;
 }
 
+function prof_get_course_assignments($course_id){
+	global $prof;
+	return $prof->get_course_assignments($course_id);
+}
+
 
 ?>
