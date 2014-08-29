@@ -35,7 +35,7 @@ class Professor{
 	function get_course_assignments($course_id){
 	
 	$args= array(
-		'post_type' => 'assignments',
+		'post_type' => 'prof_assignments',
 		'meta_query' => array(
 			array(
 				'key' => 'course',
