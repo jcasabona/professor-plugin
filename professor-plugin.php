@@ -21,11 +21,12 @@ require_once('prof-contact-widget.php');
 require_once('class.Professor.php');
 require_once('class.Courses.php');
 require_once('class.Assignments.php');
+require_once('class.Notes.php');
 
 $prof= new Professor();
 $prof_courses= new Prof_Course();
 $prof_assignments= new Prof_Assignment();
-
+$prof_notes= new Prof_Notes();
 
 function prof_get_assns(){
 	global $prof;
@@ -48,5 +49,9 @@ function prof_get_course_assignments($course_id){
 	return $prof->get_course_assignments($course_id);
 }
 
+function prof_get_course_notes($course_id){
+	global $prof;
+	return $prof->get_course_notes($course_id);
+}
 
 ?>

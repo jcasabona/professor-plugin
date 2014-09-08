@@ -2,28 +2,21 @@
 
 /** Create the Custom Post Type**/
   
-class Prof_Assignment{
+class Prof_Notes{
  
     var $meta_box;
     var $slug;
 
     function __construct(){
-        $this->slug= 'prof_assignments';
+        $this->slug= 'prof_notes';
 
         $this->meta_box = array(
-            'id' => 'assignments-meta',
-            'title' => __('Assignment Information'),
+            'id' => 'notes-meta',
+            'title' => __('Notes Information'),
             'page' => $this->slug,
             'context' => 'normal',
             'priority' => 'high',
             'fields' => array(
-                array(
-                    'name' => __('Due Date'),
-                    'desc' => __('When is it due?'),
-                    'id' => 'duedate',
-                    'type' => 'date',
-                    'std' => ""
-                ),  
                array(
                     'name'  => __('Course'),
                     'desc'  => __('Select the course.'),
@@ -42,15 +35,15 @@ class Prof_Assignment{
     function registration() { 
     //Arguments to create post type.
     $args = array(  
-        'label' => __('Assignments'),  
-        'singular_label' => __('Assignment'),  
+        'label' => __('Notes'),  
+        'singular_label' => __('Note'),  
         'public' => true,  
         'show_ui' => true,  
         'capability_type' => 'post',  
         'hierarchical' => true,  
         'has_archive' => true,
-        'supports' => array('title', 'editor', 'comments'),
-        'rewrite' => array('slug' => 'assignments', 'with_front' => false),
+        'supports' => array('title', 'editor', 'comments', 'revisions', 'page-attributes'),
+        'rewrite' => array('slug' => 'course-notes', 'with_front' => false),
        );  
   
   	//Register type and custom taxonomy for type.
@@ -88,9 +81,6 @@ class Prof_Assignment{
                 case 'textarea':
                     echo '<textarea name="', $field['id'], '" id="', $field['id'], '" cols="60" rows="4" style="width:97%">', $meta ? $meta : $field['std'], '</textarea>', '<br />', $field['desc'];
                     break;
-                case 'date':
-                    echo '<input type="date" name="', $field['id'], '" id="', $field['id'], '" value="', $meta ? $meta : $field['std'], '" size="30" style="width:97%" />', '<br />', $field['desc'];
-                    break;
                 case 'post_list':  
     			$items = get_posts( array (  
     				'post_type' => 'prof_courses',  
@@ -109,19 +99,6 @@ class Prof_Assignment{
         }
         
         echo '</table>';
-?>
-        <script>
-           (function() {
-              var elem = document.createElement('input');
-              elem.setAttribute('type', 'date');
-         
-              if ( elem.type === 'text' ) {
-                 $('#duedate').datepicker(); 
-              }
-           })();
-        </script>
-
-<?php
     }
 
     // get current post meta data
@@ -153,7 +130,7 @@ class Prof_Assignment{
 
     //**Usful Stuff Here**/
     function get_nice_name(){
-        return "Assignments";
+        return "Notes";
     }
 
     function is_assn($type){

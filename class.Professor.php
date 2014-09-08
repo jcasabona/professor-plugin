@@ -40,13 +40,36 @@ class Professor{
 			array(
 				'key' => 'course',
 				'value' => $course_id,
-			)
+			),
+		'order_by' => 'meta_value',
+		'meta_key' => 'duedate',
+		'meta_value' => date('Y-m-d'),
+		'meta_compare' => '>=',
+		'order' => ASC
 		)
 	);
 	
 	$assns= new WP_Query($args);
 	
 	return $assns;
+	
+	}
+
+	function get_course_notes($course_id){
+	
+	$args= array(
+		'post_type' => 'prof_notes',
+		'meta_query' => array(
+			array(
+				'key' => 'course',
+				'value' => $course_id,
+			),
+		)
+	);
+	
+	$notes= new WP_Query($args);
+	
+	return $notes;
 	
 	}
 
