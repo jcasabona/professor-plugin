@@ -54,4 +54,12 @@ function prof_get_course_notes($course_id){
 	return $prof->get_course_notes($course_id);
 }
 
+function prof_print_assns($assns){
+//lkjh
+}
+
+function prof_convert_date($date){
+	return date('M. d', strtotime($date));
+}
+
 ?>
