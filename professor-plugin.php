@@ -62,4 +62,8 @@ function prof_convert_date($date){
 	return date('M. d', strtotime($date));
 }
 
+function prof_get_nice_name($type){
+	return (strpos($type, 'prof') !== false) ? substr($type, 5) : $type;
+}
+
 ?>
